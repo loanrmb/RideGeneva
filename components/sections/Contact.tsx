@@ -3,69 +3,66 @@
 import { motion } from 'framer-motion'
 import { useLang } from '@/context/LangContext'
 import { PHONE, PHONE_DISPLAY, WHATSAPP_URL } from '@/lib/data'
-import GlassCard from '@/components/ui/GlassCard'
 
 export default function Contact() {
   const { t } = useLang()
 
   return (
-    <section id="contact" className="py-[90px] px-6">
-      <div className="wrap-sm">
+    <section id="contact"
+      style={{ background:'var(--bg)', borderTop:'1px solid var(--border)', padding:'120px 0' }}>
+      <div className="wrap">
         <motion.div
-          initial={{ opacity: 0, y: 32 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
-        >
-          <GlassCard radius={32} className="p-[52px_40px] text-center">
+          initial={{ opacity:0, y:24 }} whileInView={{ opacity:1, y:0 }}
+          viewport={{ once:true }} transition={{ duration:0.6 }}>
 
-            <div style={{ fontSize: 40, marginBottom: 16 }}>📞</div>
+          <span className="label">{t.cta_title}</span>
 
-            <h2
-              className="font-extrabold mb-2.5"
+          <h2 style={{ fontSize:'clamp(48px,6.5vw,96px)', color:'var(--txt)',
+            marginBottom:24, maxWidth:800, lineHeight:0.97 }}>
+            Prêt à partir ?
+          </h2>
+
+          <p style={{ fontSize:15, maxWidth:480, marginBottom:48 }}>
+            {t.cta_sub}
+          </p>
+
+          <div className="flex gap-4 flex-wrap items-center">
+            <a href={`tel:${PHONE}`} className="btn-primary"
+              style={{ fontSize:12, padding:'16px 40px' }}>
+              {t.btn_call_now} · {PHONE_DISPLAY}
+            </a>
+            <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer"
               style={{
-                fontSize: 'clamp(24px, 4vw, 40px)',
-                letterSpacing: 'clamp(-1px, -0.03em, -2px)',
-              }}
-            >
-              {t.cta_title}
-            </h2>
+                display:'inline-block', padding:'15px 40px', borderRadius:4,
+                background:'#25D366', color:'#fff', fontFamily:'inherit',
+                fontWeight:400, fontSize:12, letterSpacing:'0.12em',
+                textTransform:'uppercase', textDecoration:'none',
+              }}>
+              WhatsApp
+            </a>
+          </div>
 
-            <p
-              className="mb-7 leading-[1.6]"
-              style={{ fontSize: 14.5, color: 'var(--txt-sub)' }}
-            >
-              {t.cta_sub}
-            </p>
+          {/* Divider */}
+          <div className="line mt-20 mb-16" />
 
-            <div className="flex gap-3 justify-center flex-wrap">
-              <a
-                href={`tel:${PHONE}`}
-                className="btn-primary"
-                style={{ fontSize: 14, padding: '13px 24px' }}
-              >
-                📞 {t.btn_call_now} · {PHONE_DISPLAY}
-              </a>
+          {/* Info grid */}
+          <div className="grid gap-8" style={{ gridTemplateColumns:'repeat(4,1fr)' }}>
+            {[
+              { l:'Disponibilité',  v:'24h/24 · 7j/7'    },
+              { l:'Zone',           v:'Genève & Suisse'   },
+              { l:'Réponse',        v:'Sous 2 minutes'    },
+              { l:'Paiement',       v:'CB · Espèces · Virement' },
+            ].map(({ l, v }) => (
+              <div key={l}>
+                <div style={{ fontSize:10, fontWeight:400, letterSpacing:'0.12em',
+                  textTransform:'uppercase', color:'var(--txt-2)', marginBottom:6 }}>
+                  {l}
+                </div>
+                <div style={{ fontSize:13, fontWeight:400, color:'var(--txt)' }}>{v}</div>
+              </div>
+            ))}
+          </div>
 
-              <a
-                href={WHATSAPP_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="font-bold no-underline transition-all duration-200 hover:opacity-90 hover:-translate-y-0.5"
-                style={{
-                  padding: '13px 24px',
-                  borderRadius: 50,
-                  background: '#25D366',
-                  color: '#fff',
-                  fontSize: 14,
-                  display: 'inline-block',
-                }}
-              >
-                💬 WhatsApp
-              </a>
-            </div>
-
-          </GlassCard>
         </motion.div>
       </div>
     </section>
