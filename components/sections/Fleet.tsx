@@ -9,7 +9,7 @@ import SectionHeader from '@/components/ui/SectionHeader'
 import CarSVG from '@/components/ui/CarSVG'
 
 function getCategoryLabel(t: Translations, key: string): string {
-  return (t as Record<string, string>)[`cat_${key}`] ?? key
+  return (t as unknown as Record<string, string>)[`cat_${key}`] ?? key
 }
 
 export default function Fleet() {
