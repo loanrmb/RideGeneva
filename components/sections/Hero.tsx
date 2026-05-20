@@ -41,7 +41,6 @@ export default function Hero() {
 
       {/* ── Main content — full height, bottom aligned ── */}
       <motion.div
-        style={{ opacity: fade }}
         className="relative z-10 flex flex-col justify-end flex-1 min-h-screen"
         style={{ padding: '0 40px 56px', maxWidth: 1080, margin: '0 auto', width: '100%', opacity: fade as any }}
       >
