@@ -14,91 +14,62 @@ export default function Navbar() {
   const { lang, setLang, t }    = useLang()
   const langRef = useRef<HTMLDivElement>(null)
 
-  // Avoid hydration mismatch for theme icon
   useEffect(() => { setMounted(true) }, [])
-
-  // Close lang menu on outside click
   useEffect(() => {
-    const handler = (e: MouseEvent) => {
-      if (langRef.current && !langRef.current.contains(e.target as Node)) {
-        setLangOpen(false)
-      }
+    const h = (e: MouseEvent) => {
+      if (langRef.current && !langRef.current.contains(e.target as Node)) setLangOpen(false)
     }
-    document.addEventListener('mousedown', handler)
-    return () => document.removeEventListener('mousedown', handler)
+    document.addEventListener('mousedown', h)
+    return () => document.removeEventListener('mousedown', h)
   }, [])
 
   const isDark = mounted && theme === 'dark'
 
-  const navLinks = [
-    { label: t.nav_fleet,    href: '#fleet'    },
-    { label: t.nav_services, href: '#services' },
-    { label: t.nav_pricing,  href: '#calc'     },
-    { label: t.nav_contact,  href: '#contact'  },
-  ]
-
   return (
     <nav
-      className="glass fixed top-[14px] left-1/2 -translate-x-1/2 z-[200] rounded-[28px]
-                 flex items-center gap-2.5 px-[22px] py-[11px]"
-      style={{ width: 'min(calc(100% - 28px), 1100px)' }}
+      className="fixed top-0 left-0 right-0 z-[200] flex items-center px-10 h-[60px]"
+      style={{ borderBottom: '1px solid rgba(255,255,255,0.08)' }}
     >
-      {/* ── Logo ── */}
-      <Link
-        href="/"
-        className="flex items-center gap-[2px] font-extrabold text-[17px] tracking-[-0.6px]
-                   no-underline text-[var(--txt)] mr-3 flex-shrink-0"
-      >
-        Ride<span className="text-[var(--gold)]">Geneva</span>
+      {/* Logo */}
+      <Link href="/" className="flex items-center gap-[2px] font-medium tracking-[-0.5px] text-white no-underline mr-10 flex-shrink-0"
+        style={{ fontSize: 15 }}>
+        Ride<span style={{ color: 'var(--red)' }}>Geneva</span>
         <span className="logo-dot" />
       </Link>
 
-      {/* ── Nav links ── */}
-      <ul className="flex gap-0.5 flex-1 list-none m-0 p-0">
-        {navLinks.map(({ label, href }) => (
-          <li key={href}>
-            <a href={href} className="nav-link">{label}</a>
-          </li>
+      {/* Nav links */}
+      <div className="flex gap-7 flex-1">
+        {[
+          { label: t.nav_fleet,    href: '#fleet'    },
+          { label: t.nav_services, href: '#services' },
+          { label: t.nav_pricing,  href: '#calc'     },
+          { label: t.nav_contact,  href: '#contact'  },
+        ].map(({ label, href }) => (
+          <a key={href} href={href} className="nav-link">{label}</a>
         ))}
-      </ul>
+      </div>
 
-      {/* ── Right controls ── */}
-      <div className="flex items-center gap-2 ml-auto flex-shrink-0">
-
-        {/* Language selector */}
+      {/* Right */}
+      <div className="flex items-center gap-3 ml-auto flex-shrink-0">
         <div className="relative" ref={langRef}>
           <button className="lang-btn" onClick={() => setLangOpen(v => !v)}>
             {FLAGS[lang]} {lang}
           </button>
-
           {langOpen && (
-            <div className="lang-menu glass">
+            <div className="lang-menu">
               {LANGS.map(l => (
-                <button
-                  key={l}
-                  className={`lang-opt ${lang === l ? 'active' : ''}`}
-                  onClick={() => { setLang(l); setLangOpen(false) }}
-                >
+                <button key={l} className={`lang-opt ${lang === l ? 'active' : ''}`}
+                  onClick={() => { setLang(l); setLangOpen(false) }}>
                   {FLAGS[l]} {l}
                 </button>
               ))}
             </div>
           )}
         </div>
-
-        {/* Dark / light toggle */}
-        <button
-          className="dark-btn"
-          onClick={() => setTheme(isDark ? 'light' : 'dark')}
-          aria-label="Toggle theme"
-        >
+        <button className="dark-btn" onClick={() => setTheme(isDark ? 'light' : 'dark')}>
           {mounted ? (isDark ? '☀️' : '🌙') : '🌙'}
         </button>
-
-        {/* Book CTA */}
-        <a href={`tel:${PHONE}`} className="cta-nav">
-          {t.btn_book}
-        </a>
+        <a href={`tel:${PHONE}`} className="cta-nav">{t.btn_book}</a>
       </div>
     </nav>
   )
