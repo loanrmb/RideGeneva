@@ -183,3 +183,39 @@ input[type='range'] { width:100%; accent-color:var(--gold); cursor:pointer; disp
 ::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb { background: var(--gold-lt); border-radius: 3px; }
 ::-webkit-scrollbar-thumb:hover { background: var(--gold-bd); }
+
+/* ─── Preloader ───────────────────────────────────────────────── */
+@keyframes pulseDot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%       { opacity: 0.4; transform: scale(0.75); }
+}
+
+/* ─── Scroll reveal baseline ──────────────────────────────────── */
+.reveal-hidden { opacity: 0; transform: translateY(28px); }
+
+/* ─── Section fade overlay (between dark/light sections) ──────── */
+.section-transition {
+  position: relative;
+}
+.section-transition::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 120px;
+  background: linear-gradient(to bottom, transparent, var(--bg-from));
+  pointer-events: none;
+}
+
+/* ─── Full bleed image sections ───────────────────────────────── */
+.img-overlay-dark  { background: rgba(0,0,0,0.55); }
+.img-overlay-light { background: rgba(255,255,255,0.15); }
+
+/* ─── SR-only (SEO hidden text) ───────────────────────────────── */
+.sr-only {
+  position: absolute; width: 1px; height: 1px;
+  padding: 0; margin: -1px; overflow: hidden;
+  clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+}
+
+/* ─── Prose SEO block ─────────────────────────────────────────── */
+.seo-block { font-size: 13px; color: var(--txt-sub); line-height: 1.8; }

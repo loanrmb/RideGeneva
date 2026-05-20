@@ -8,7 +8,7 @@ import GlassCard from '@/components/ui/GlassCard'
 import SectionHeader from '@/components/ui/SectionHeader'
 
 function getServiceText(t: Translations, key: string): string {
-  return (t as unknown as Record<string, string>)[key] ?? ''
+  return (t as Record<string, string>)[key] ?? ''
 }
 
 export default function Services() {
