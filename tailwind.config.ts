@@ -10,32 +10,36 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
+        red: {
+          swiss:  '#D52B1E',
+          dark:   '#B82318',
+          light:  'rgba(213,43,30,0.07)',
+        },
+        // Keep gold aliases → Swiss red
         gold: {
-          DEFAULT: 'var(--gold)',
-          light:   'var(--gold-lt)',
+          DEFAULT: 'var(--red)',
+          light:   'var(--red-lt)',
         },
       },
       fontFamily: {
-        // Onest as default — loaded via next/font/google CSS variable
         sans:  ['var(--font-onest)', '"Helvetica Neue"', 'Helvetica', 'Arial', 'sans-serif'],
         onest: ['var(--font-onest)', '"Helvetica Neue"', 'Helvetica', 'Arial', 'sans-serif'],
-        mono:  ['"Courier New"', 'Courier', 'monospace'],
       },
       letterSpacing: {
         tightest: '-0.05em',
-        tighter:  '-0.04em',  // aircenter headline spacing
+        tighter:  '-0.04em',
         tight:    '-0.03em',
         wide:     '0.08em',
-        widest:   '0.2em',
+        wider:    '0.12em',
+        widest:   '0.20em',
       },
       lineHeight: {
-        none:    '1',
-        tightest:'0.97',      // aircenter big headline line-height
-        tight:   '1.04',
+        tightest: '0.97',
+        tight:    '1.04',
       },
       borderRadius: {
-        glass: '28px',
-        card:  '24px',
+        card: '8px',
+        sm:   '4px',
       },
       keyframes: {
         fadeUp: {
@@ -43,18 +47,13 @@ const config: Config = {
           to:   { opacity: '1', transform: 'translateY(0)'    },
         },
         pulseDot: {
-          '0%, 100%': { opacity: '1', transform: 'scale(1)'    },
+          '0%, 100%': { opacity: '1',   transform: 'scale(1)'    },
           '50%':      { opacity: '0.4', transform: 'scale(0.75)' },
-        },
-        slideIn: {
-          from: { opacity: '0', transform: 'translateX(-20px)' },
-          to:   { opacity: '1', transform: 'translateX(0)'     },
         },
       },
       animation: {
         fadeUp:   'fadeUp 0.6s ease both',
         pulseDot: 'pulseDot 2s ease infinite',
-        slideIn:  'slideIn 0.5s ease both',
       },
     },
   },
