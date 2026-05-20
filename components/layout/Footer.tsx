@@ -1,5 +1,7 @@
-import { PHONE_DISPLAY } from '@/lib/data'
+'use client'
 
+import { PHONE_DISPLAY } from '@/lib/data'
+  
 export default function Footer() {
   return (
     <footer style={{ background:'var(--bg)', borderTop:'1px solid var(--border)', padding:'40px 0' }}>
