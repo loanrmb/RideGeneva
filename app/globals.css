@@ -4,46 +4,64 @@
 
 /* ─── Theme variables ─────────────────────────────────────────── */
 :root {
-  --gold:     #B8963E;
-  --gold-mid: #C4A04A;
-  --gold-lt:  rgba(184,150,62,0.1);
-  --gold-bd:  rgba(184,150,62,0.28);
+  /* Swiss Red accent (drapeau suisse) */
+  --red:     #D52B1E;
+  --red-mid: #B82318;
+  --red-lt:  rgba(213,43,30,0.07);
+  --red-bd:  rgba(213,43,30,0.22);
 
-  --bg-from:  #f2f2f7;
-  --bg-mid:   #ebebf3;
-  --bg-to:    #f0f0f8;
+  /* Keep --gold aliases pointing to red so all components work unchanged */
+  --gold:     #D52B1E;
+  --gold-mid: #B82318;
+  --gold-lt:  rgba(213,43,30,0.07);
+  --gold-bd:  rgba(213,43,30,0.22);
 
-  --txt:      #1d1d1f;
-  --txt-sub:  #6e6e73;
+  --bg:       #ffffff;
+  --txt:      #0a0a0a;
+  --txt-sub:  #666666;
 
-  --glass-bg:  rgba(255,255,255,0.65);
-  --glass-bd:  rgba(255,255,255,0.92);
-  --glass-sh:  0 8px 32px rgba(0,0,0,0.06), inset 0 1px 0 rgba(255,255,255,0.9);
-  --glass-shh: 0 24px 60px rgba(0,0,0,0.14), inset 0 1px 0 rgba(255,255,255,0.9);
+  /* Sections — clean card, no blur */
+  --card-bg:  #ffffff;
+  --card-bd:  rgba(0,0,0,0.08);
+  --card-sh:  0 1px 8px rgba(0,0,0,0.05);
+  --card-shh: 0 4px 24px rgba(0,0,0,0.10);
 
-  --sep:     rgba(0,0,0,0.06);
-  --btn-bd:  rgba(0,0,0,0.12);
+  /* Legacy glass aliases → clean card */
+  --glass-bg:  #ffffff;
+  --glass-bd:  rgba(0,0,0,0.08);
+  --glass-sh:  0 1px 8px rgba(0,0,0,0.05);
+  --glass-shh: 0 4px 24px rgba(0,0,0,0.10);
+
+  --sep:     rgba(0,0,0,0.08);
+  --btn-bd:  rgba(0,0,0,0.15);
 }
 
 .dark {
-  --gold:     #D4AF70;
-  --gold-mid: #C9A55A;
-  --gold-lt:  rgba(212,175,112,0.12);
-  --gold-bd:  rgba(212,175,112,0.22);
+  --red:     #E8342A;
+  --red-mid: #D52B1E;
+  --red-lt:  rgba(213,43,30,0.10);
+  --red-bd:  rgba(213,43,30,0.28);
 
-  --bg-from:  #07070e;
-  --bg-mid:   #0c0c18;
-  --bg-to:    #08080f;
+  --gold:     #E8342A;
+  --gold-mid: #D52B1E;
+  --gold-lt:  rgba(213,43,30,0.10);
+  --gold-bd:  rgba(213,43,30,0.28);
 
-  --txt:      #f5f5f7;
-  --txt-sub:  #8e8e93;
+  --bg:       #0a0a0a;
+  --txt:      #f5f5f5;
+  --txt-sub:  #888888;
 
-  --glass-bg:  rgba(255,255,255,0.05);
-  --glass-bd:  rgba(255,255,255,0.08);
-  --glass-sh:  0 8px 32px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.04);
-  --glass-shh: 0 24px 60px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.06);
+  --card-bg:  #141414;
+  --card-bd:  rgba(255,255,255,0.07);
+  --card-sh:  0 1px 8px rgba(0,0,0,0.4);
+  --card-shh: 0 4px 24px rgba(0,0,0,0.6);
 
-  --sep:     rgba(255,255,255,0.06);
+  --glass-bg:  #141414;
+  --glass-bd:  rgba(255,255,255,0.07);
+  --glass-sh:  0 1px 8px rgba(0,0,0,0.4);
+  --glass-shh: 0 4px 24px rgba(0,0,0,0.6);
+
+  --sep:     rgba(255,255,255,0.07);
   --btn-bd:  rgba(255,255,255,0.15);
 }
 
@@ -52,22 +70,19 @@
 html { scroll-behavior: smooth; }
 
 body {
-  /* Onest loaded via CSS variable from next/font/google */
   font-family: var(--font-onest), 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-weight: 500;
-  background: linear-gradient(135deg, var(--bg-from) 0%, var(--bg-mid) 50%, var(--bg-to) 100%);
+  font-size: 14px;
+  background: var(--bg);
   color: var(--txt);
   min-height: 100vh;
   overflow-x: hidden;
-  transition: background 0.4s, color 0.4s;
-  /* aircenter: body text is uppercase */
+  transition: background 0.3s, color 0.3s;
   text-transform: uppercase;
-  letter-spacing: 0.01em;
+  letter-spacing: 0.02em;
 }
 
-/* ─── Typography — Onest / aircenter style ────────────────────── */
-
-/* Big display headings — weight 400, ultra-tight, uppercase */
+/* ─── Typography — Onest / aircenter exact ────────────────────── */
 h1, h2 {
   font-family: var(--font-onest), 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-weight: 400;
@@ -76,7 +91,6 @@ h1, h2 {
   line-height: 0.97;
 }
 
-/* Sub-headings — slightly more weight */
 h3 {
   font-family: var(--font-onest), 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-weight: 400;
@@ -89,141 +103,136 @@ h4, h5, h6 {
   font-family: var(--font-onest), 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-weight: 500;
   text-transform: uppercase;
-  letter-spacing: 0.01em;
+  letter-spacing: 0.02em;
 }
 
-/* Body paragraphs — override uppercase for readability */
+/* Paragraphs: uppercase but readable */
 p {
   font-weight: 400;
-  text-transform: none;
-  letter-spacing: 0.01em;
-  line-height: 1.7;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  line-height: 1.75;
 }
 
-/* Labels, badges, nav — uppercase is great */
-span, a, button, label { font-family: inherit; }
-
-/* ─── Glass ───────────────────────────────────────────────────── */
+/* ─── Sections & cards ────────────────────────────────────────── */
 @layer components {
+
+  /* Clean rectangular card — no blur, slight rounding */
   .glass {
-    backdrop-filter: blur(28px) saturate(180%);
-    -webkit-backdrop-filter: blur(28px) saturate(180%);
-    background: var(--glass-bg);
-    border: 1px solid var(--glass-bd);
-    box-shadow: var(--glass-sh);
+    background: var(--card-bg);
+    border: 1px solid var(--card-bd);
+    box-shadow: var(--card-sh);
+    border-radius: 8px;
   }
   .glass-gold {
-    backdrop-filter: blur(28px) saturate(180%);
-    -webkit-backdrop-filter: blur(28px) saturate(180%);
-    background: var(--gold-lt);
-    border: 1px solid var(--gold-bd);
+    background: var(--red-lt);
+    border: 1px solid var(--red-bd);
+    border-radius: 8px;
   }
-  .glass-hover:hover { box-shadow: var(--glass-shh); }
+  .glass-hover:hover {
+    box-shadow: var(--card-shh);
+  }
 
-  /* ─── Background orbs ─── */
-  .orbs { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
-  .orb  { position: absolute; border-radius: 50%; }
-  .orb-1 { top:8%; left:15%; width:600px; height:600px;
-    background: radial-gradient(circle,rgba(184,150,62,.18) 0%,transparent 70%); }
-  .orb-2 { bottom:5%; right:10%; width:500px; height:500px;
-    background: radial-gradient(circle,rgba(60,100,180,.10) 0%,transparent 70%); }
-  .orb-3 { top:45%; left:60%; width:350px; height:350px;
-    background: radial-gradient(circle,rgba(140,60,180,.07) 0%,transparent 70%); }
-  .dark .orb-1 { background: radial-gradient(circle,rgba(184,150,62,.07) 0%,transparent 70%); }
-  .dark .orb-2 { background: radial-gradient(circle,rgba(60,100,180,.04) 0%,transparent 70%); }
-  .dark .orb-3 { background: radial-gradient(circle,rgba(140,60,180,.03) 0%,transparent 70%); }
+  /* Section dividers */
+  .section-border {
+    border: 1px solid var(--sep);
+    border-radius: 8px;
+  }
+
+  /* ─── Orbs removed — clean black/white ─── */
+  .orbs { display: none; }
+  .orb  { display: none; }
 
   /* ─── Nav ─── */
   .nav-link {
-    display: block; padding: 5px 10px; border-radius: 20px;
-    font-size: 11px; font-weight: 500; letter-spacing: 0.08em;
+    display: block; padding: 5px 12px; border-radius: 4px;
+    font-size: 11px; font-weight: 500; letter-spacing: 0.1em;
     color: var(--txt-sub); text-decoration: none;
-    text-transform: uppercase; transition: all .2s;
+    text-transform: uppercase; transition: all .15s;
   }
-  .nav-link:hover { color: var(--txt); background: var(--gold-lt); }
+  .nav-link:hover { color: var(--txt); background: var(--red-lt); }
 
   .lang-btn {
-    padding: 5px 10px; border-radius: 12px;
-    border: 1px solid var(--gold-bd); background: var(--gold-lt);
-    color: var(--gold); font-weight: 600; font-size: 10px;
-    cursor: pointer; font-family: inherit; letter-spacing: 0.1em;
+    padding: 5px 10px; border-radius: 4px;
+    border: 1px solid var(--red-bd); background: var(--red-lt);
+    color: var(--red); font-weight: 600; font-size: 10px;
+    cursor: pointer; font-family: inherit; letter-spacing: 0.12em;
+    text-transform: uppercase;
   }
   .lang-menu {
-    position: absolute; top: calc(100% + 8px); right: 0;
-    border-radius: 14px; padding: 6px;
-    display: flex; flex-direction: column; gap: 2px;
-    min-width: 88px; z-index: 300;
+    position: absolute; top: calc(100% + 6px); right: 0;
+    border-radius: 6px; padding: 4px;
+    display: flex; flex-direction: column; gap: 1px;
+    min-width: 80px; z-index: 300;
   }
   .lang-opt {
-    padding: 6px 10px; border-radius: 9px; border: none;
+    padding: 6px 10px; border-radius: 4px; border: none;
     background: transparent; color: var(--txt-sub);
     cursor: pointer; font-size: 11px; text-align: left;
-    font-family: inherit; transition: all .15s; letter-spacing: 0.08em;
+    font-family: inherit; transition: all .12s;
+    letter-spacing: 0.08em; text-transform: uppercase;
   }
   .lang-opt:hover, .lang-opt.active {
-    background: var(--gold-lt); color: var(--gold); font-weight: 600;
+    background: var(--red-lt); color: var(--red); font-weight: 600;
   }
 
   .dark-btn {
-    width: 34px; height: 34px; border-radius: 50%; border: none;
-    background: var(--gold-lt); color: var(--gold);
+    width: 34px; height: 34px; border-radius: 4px; border: 1px solid var(--sep);
+    background: transparent; color: var(--txt);
     cursor: pointer; font-size: 15px; display: flex;
     align-items: center; justify-content: center;
-    transition: all .2s; flex-shrink: 0;
+    transition: all .15s; flex-shrink: 0;
   }
-  .dark-btn:hover { transform: scale(1.1); }
+  .dark-btn:hover { background: var(--red-lt); color: var(--red); }
 
   /* ─── Buttons ─── */
   .btn-primary {
-    padding: 13px 30px; border-radius: 50px;
-    background: linear-gradient(135deg,var(--gold),var(--gold-mid));
+    padding: 13px 32px; border-radius: 4px;
+    background: var(--red);
     color: #fff; font-weight: 600; font-size: 11px;
-    letter-spacing: 0.1em; text-transform: uppercase;
-    text-decoration: none;
-    box-shadow: 0 4px 24px var(--gold-lt);
-    transition: all .25s; border: none; cursor: pointer;
-    font-family: inherit; display: inline-block;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    text-decoration: none; transition: all .2s;
+    border: none; cursor: pointer; font-family: inherit;
+    display: inline-block;
   }
-  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(184,150,62,.4); }
+  .btn-primary:hover { background: var(--red-mid); transform: translateY(-1px); }
 
   .btn-outline {
-    padding: 13px 30px; border-radius: 50px; background: transparent;
+    padding: 12px 32px; border-radius: 4px; background: transparent;
     color: var(--txt); font-weight: 500; font-size: 11px;
-    letter-spacing: 0.1em; text-transform: uppercase;
-    border: 1.5px solid var(--btn-bd); cursor: pointer;
-    font-family: inherit; transition: all .25s;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    border: 1px solid var(--btn-bd); cursor: pointer;
+    font-family: inherit; transition: all .2s;
     text-decoration: none; display: inline-block;
   }
-  .btn-outline:hover { background: var(--gold-lt); border-color: var(--gold); color: var(--gold); }
+  .btn-outline:hover { border-color: var(--red); color: var(--red); }
 
   .cta-nav {
-    padding: 8px 18px; border-radius: 20px;
-    background: linear-gradient(135deg,var(--gold),var(--gold-mid));
+    padding: 8px 18px; border-radius: 4px;
+    background: var(--red);
     color: #fff; font-weight: 600; font-size: 10px;
     letter-spacing: 0.12em; text-transform: uppercase;
     text-decoration: none; white-space: nowrap; transition: all .2s;
   }
-  .cta-nav:hover { opacity:.88; transform: translateY(-1px); }
+  .cta-nav:hover { background: var(--red-mid); }
 
-  /* ─── Gold gradient text ─── */
+  /* ─── Red gradient text (replaces gold) ─── */
   .gold-text {
-    background: linear-gradient(135deg,var(--gold),var(--gold-mid));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    color: var(--red);
+    background: none;
+    -webkit-text-fill-color: var(--red);
   }
 
-  /* ─── Section helpers ─── */
+  /* ─── Layout helpers ─── */
   .wrap     { max-width: 1100px; margin: 0 auto; }
   .wrap-sm  { max-width: 680px;  margin: 0 auto; }
-  .sep-line { height:1px; background: var(--sep); }
+  .sep-line { height: 1px; background: var(--sep); }
   .logo-dot {
-    width:5px; height:5px; border-radius:50%;
-    background:var(--gold); display:inline-block;
-    margin-left:3px; vertical-align:middle;
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--red); display: inline-block;
+    margin-left: 4px; vertical-align: middle;
   }
 
-  /* ─── SR-only ─── */
   .sr-only {
     position: absolute; width: 1px; height: 1px;
     padding: 0; margin: -1px; overflow: hidden;
@@ -233,17 +242,17 @@ span, a, button, label { font-family: inherit; }
 
 /* ─── Animations ──────────────────────────────────────────────── */
 @keyframes pulseDot {
-  0%, 100% { opacity: 1; transform: scale(1); }
+  0%, 100% { opacity: 1;   transform: scale(1);    }
   50%       { opacity: 0.4; transform: scale(0.75); }
 }
 
 /* ─── Range slider ────────────────────────────────────────────── */
 input[type='range'] {
-  width: 100%; accent-color: var(--gold);
+  width: 100%; accent-color: var(--red);
   cursor: pointer; display: block;
 }
 
 /* ─── Scrollbar ──────────────────────────────────────────────── */
-::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar { width: 4px; }
 ::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: var(--gold-lt); border-radius: 3px; }
+::-webkit-scrollbar-thumb { background: var(--sep); border-radius: 2px; }
