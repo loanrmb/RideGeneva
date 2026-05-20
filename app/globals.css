@@ -52,13 +52,56 @@
 html { scroll-behavior: smooth; }
 
 body {
-  font-family: -apple-system, 'SF Pro Display', 'Helvetica Neue', Arial, sans-serif;
+  /* Onest loaded via CSS variable from next/font/google */
+  font-family: var(--font-onest), 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: 500;
   background: linear-gradient(135deg, var(--bg-from) 0%, var(--bg-mid) 50%, var(--bg-to) 100%);
   color: var(--txt);
   min-height: 100vh;
   overflow-x: hidden;
   transition: background 0.4s, color 0.4s;
+  /* aircenter: body text is uppercase */
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
 }
+
+/* ─── Typography — Onest / aircenter style ────────────────────── */
+
+/* Big display headings — weight 400, ultra-tight, uppercase */
+h1, h2 {
+  font-family: var(--font-onest), 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: -0.04em;
+  line-height: 0.97;
+}
+
+/* Sub-headings — slightly more weight */
+h3 {
+  font-family: var(--font-onest), 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: -0.03em;
+  line-height: 1.0;
+}
+
+h4, h5, h6 {
+  font-family: var(--font-onest), 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+}
+
+/* Body paragraphs — override uppercase for readability */
+p {
+  font-weight: 400;
+  text-transform: none;
+  letter-spacing: 0.01em;
+  line-height: 1.7;
+}
+
+/* Labels, badges, nav — uppercase is great */
+span, a, button, label { font-family: inherit; }
 
 /* ─── Glass ───────────────────────────────────────────────────── */
 @layer components {
@@ -93,16 +136,17 @@ body {
   /* ─── Nav ─── */
   .nav-link {
     display: block; padding: 5px 10px; border-radius: 20px;
-    font-size: 12.5px; color: var(--txt-sub); font-weight: 500;
-    text-decoration: none; transition: all .2s;
+    font-size: 11px; font-weight: 500; letter-spacing: 0.08em;
+    color: var(--txt-sub); text-decoration: none;
+    text-transform: uppercase; transition: all .2s;
   }
   .nav-link:hover { color: var(--txt); background: var(--gold-lt); }
 
   .lang-btn {
     padding: 5px 10px; border-radius: 12px;
     border: 1px solid var(--gold-bd); background: var(--gold-lt);
-    color: var(--gold); font-weight: 700; font-size: 11px;
-    cursor: pointer; font-family: inherit;
+    color: var(--gold); font-weight: 600; font-size: 10px;
+    cursor: pointer; font-family: inherit; letter-spacing: 0.1em;
   }
   .lang-menu {
     position: absolute; top: calc(100% + 8px); right: 0;
@@ -113,10 +157,12 @@ body {
   .lang-opt {
     padding: 6px 10px; border-radius: 9px; border: none;
     background: transparent; color: var(--txt-sub);
-    cursor: pointer; font-size: 12.5px; text-align: left;
-    font-family: inherit; transition: all .15s;
+    cursor: pointer; font-size: 11px; text-align: left;
+    font-family: inherit; transition: all .15s; letter-spacing: 0.08em;
   }
-  .lang-opt:hover, .lang-opt.active { background: var(--gold-lt); color: var(--gold); font-weight: 700; }
+  .lang-opt:hover, .lang-opt.active {
+    background: var(--gold-lt); color: var(--gold); font-weight: 600;
+  }
 
   .dark-btn {
     width: 34px; height: 34px; border-radius: 50%; border: none;
@@ -131,7 +177,8 @@ body {
   .btn-primary {
     padding: 13px 30px; border-radius: 50px;
     background: linear-gradient(135deg,var(--gold),var(--gold-mid));
-    color: #fff; font-weight: 700; font-size: 15px;
+    color: #fff; font-weight: 600; font-size: 11px;
+    letter-spacing: 0.1em; text-transform: uppercase;
     text-decoration: none;
     box-shadow: 0 4px 24px var(--gold-lt);
     transition: all .25s; border: none; cursor: pointer;
@@ -141,7 +188,8 @@ body {
 
   .btn-outline {
     padding: 13px 30px; border-radius: 50px; background: transparent;
-    color: var(--txt); font-weight: 600; font-size: 15px;
+    color: var(--txt); font-weight: 500; font-size: 11px;
+    letter-spacing: 0.1em; text-transform: uppercase;
     border: 1.5px solid var(--btn-bd); cursor: pointer;
     font-family: inherit; transition: all .25s;
     text-decoration: none; display: inline-block;
@@ -149,9 +197,10 @@ body {
   .btn-outline:hover { background: var(--gold-lt); border-color: var(--gold); color: var(--gold); }
 
   .cta-nav {
-    padding: 8px 16px; border-radius: 20px;
+    padding: 8px 18px; border-radius: 20px;
     background: linear-gradient(135deg,var(--gold),var(--gold-mid));
-    color: #fff; font-weight: 700; font-size: 12.5px;
+    color: #fff; font-weight: 600; font-size: 10px;
+    letter-spacing: 0.12em; text-transform: uppercase;
     text-decoration: none; white-space: nowrap; transition: all .2s;
   }
   .cta-nav:hover { opacity:.88; transform: translateY(-1px); }
@@ -165,57 +214,36 @@ body {
   }
 
   /* ─── Section helpers ─── */
-  .wrap    { max-width: 1100px; margin: 0 auto; }
-  .wrap-sm { max-width: 680px;  margin: 0 auto; }
+  .wrap     { max-width: 1100px; margin: 0 auto; }
+  .wrap-sm  { max-width: 680px;  margin: 0 auto; }
   .sep-line { height:1px; background: var(--sep); }
   .logo-dot {
     width:5px; height:5px; border-radius:50%;
     background:var(--gold); display:inline-block;
     margin-left:3px; vertical-align:middle;
   }
+
+  /* ─── SR-only ─── */
+  .sr-only {
+    position: absolute; width: 1px; height: 1px;
+    padding: 0; margin: -1px; overflow: hidden;
+    clip: rect(0,0,0,0); white-space: nowrap; border: 0;
+  }
 }
 
-/* ─── Range slider ────────────────────────────────────────────── */
-input[type='range'] { width:100%; accent-color:var(--gold); cursor:pointer; display:block; }
-
-/* ─── Scrollbar ──────────────────────────────────────────────── */
-::-webkit-scrollbar { width: 6px; }
-::-webkit-scrollbar-track { background: transparent; }
-::-webkit-scrollbar-thumb { background: var(--gold-lt); border-radius: 3px; }
-::-webkit-scrollbar-thumb:hover { background: var(--gold-bd); }
-
-/* ─── Preloader ───────────────────────────────────────────────── */
+/* ─── Animations ──────────────────────────────────────────────── */
 @keyframes pulseDot {
   0%, 100% { opacity: 1; transform: scale(1); }
   50%       { opacity: 0.4; transform: scale(0.75); }
 }
 
-/* ─── Scroll reveal baseline ──────────────────────────────────── */
-.reveal-hidden { opacity: 0; transform: translateY(28px); }
-
-/* ─── Section fade overlay (between dark/light sections) ──────── */
-.section-transition {
-  position: relative;
-}
-.section-transition::after {
-  content: '';
-  position: absolute;
-  bottom: 0; left: 0; right: 0;
-  height: 120px;
-  background: linear-gradient(to bottom, transparent, var(--bg-from));
-  pointer-events: none;
+/* ─── Range slider ────────────────────────────────────────────── */
+input[type='range'] {
+  width: 100%; accent-color: var(--gold);
+  cursor: pointer; display: block;
 }
 
-/* ─── Full bleed image sections ───────────────────────────────── */
-.img-overlay-dark  { background: rgba(0,0,0,0.55); }
-.img-overlay-light { background: rgba(255,255,255,0.15); }
-
-/* ─── SR-only (SEO hidden text) ───────────────────────────────── */
-.sr-only {
-  position: absolute; width: 1px; height: 1px;
-  padding: 0; margin: -1px; overflow: hidden;
-  clip: rect(0,0,0,0); white-space: nowrap; border: 0;
-}
-
-/* ─── Prose SEO block ─────────────────────────────────────────── */
-.seo-block { font-size: 13px; color: var(--txt-sub); line-height: 1.8; }
+/* ─── Scrollbar ──────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--gold-lt); border-radius: 3px; }
