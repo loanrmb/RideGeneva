@@ -37,7 +37,7 @@ export default function Services() {
               viewport={{ once:true }} transition={{ delay:i*0.07, duration:0.5 }}>
 
               {/* Icon line */}
-              <div style={{ fontSize:22, marginBottom:16, display:'block',
+              <div style={{ fontSize:22, marginBottom:16,
                 width:40, height:40, display:'flex', alignItems:'center', justifyContent:'center',
                 background:'var(--bg-2)', borderRadius:4, border:'1px solid var(--border)' }}>
                 {svc.icon}
